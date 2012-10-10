@@ -12,9 +12,10 @@ register = template.Library()
 @register.simple_tag
 def seo_universal(obj, path):
     if obj and isinstance(obj, models.Model):
-        return seo_object(obj)
-    except SeoObject.DoesNotExist:
-        pass
+        try:
+            return seo_object(obj)
+        except SeoObject.DoesNotExist:
+            pass
     return seo_url(path)
 
 def render_seo(seo):
