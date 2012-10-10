@@ -16,10 +16,10 @@ def seo_universal(obj, path):
             return seo_object(obj)
         except SeoObject.DoesNotExist:
             pass
-    return seo_url(path)
+    return seo_url(path, obj)
 
 def render_seo(seo, obj=None):
-    return render_to_string('seo/tags.html', {'seo': seo, })
+    return render_to_string('seo/tags.html', {'seo': seo, 'obj': obj})
 
 @register.simple_tag
 def seo_object(obj):
@@ -28,7 +28,7 @@ def seo_object(obj):
     return render_seo(seo, obj)
 
 @register.simple_tag
-def seo_url(path):
+def seo_url(path, obj=None):
     bits = path.strip('/').split('/')
     for i in range(len(bits)+1):
         subpath = '/'.join(bits[:len(bits)-i])
@@ -39,5 +39,5 @@ def seo_url(path):
         except IndexError:
             pass
         else:
-            return render_seo(seo)
-    return render_seo(None)
+            return render_seo(seo, obj=obj)
+    return render_seo(None, obj=obj)
