@@ -18,14 +18,14 @@ def seo_universal(obj, path):
             pass
     return seo_url(path)
 
-def render_seo(seo):
+def render_seo(seo, obj=None):
     return render_to_string('seo/tags.html', {'seo': seo, })
 
 @register.simple_tag
 def seo_object(obj):
     ct = ContentType.objects.get_for_model(obj)
     seo = SeoObject.objects.get(content_type=ct, object_pk=obj.pk)
-    return render_seo(seo)
+    return render_seo(seo, obj)
 
 @register.simple_tag
 def seo_url(path):
