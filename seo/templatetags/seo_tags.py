@@ -19,7 +19,7 @@ def seo_universal(obj, path):
     return seo_url(path, obj)
 
 def render_seo(seo, obj=None):
-    return render_to_string('seo/tags.html', {'seo': seo, 'obj': obj})
+    return render_to_string(['custom_seo/tags.html', 'seo/tags.html'], {'seo': seo, 'obj': obj})
 
 @register.simple_tag
 def seo_object(obj):
