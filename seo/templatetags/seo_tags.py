@@ -34,6 +34,15 @@ def seo_url(path, obj=None):
         subpath = '/'.join(bits[:len(bits)-i])
         subpath = '/%s/' % subpath
         subpath = subpath.replace('//', '/')
+
+        if i > 0:
+            try:
+                seo = SeoURL.objects.filter(url=subpath+'*')[0]
+            except IndexError:
+                pass
+            else:
+                return render_seo(seo, obj=obj)
+
         try:
             seo = SeoURL.objects.filter(url=subpath)[0]
         except IndexError:
