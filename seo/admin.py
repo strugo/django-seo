@@ -16,7 +16,7 @@ class SeoURLAdmin(admin.ModelAdmin):
     ordering = ['url', ]
     search_fields = ['url', 'title']
     fieldsets = (None, {
-        'fields': ('title', 'url', 'description', 'keywords'),
+        'fields': ('title', 'url', 'description', 'keywords', 'og_image_url', ),
     }),
 
 admin.site.register(SeoURL, SeoURLAdmin)
