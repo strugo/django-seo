@@ -1,3 +1,5 @@
 <meta name="keywords" content="{{ seo.keywords }}" />
 <meta name="description" content="{{ seo.description|default:obj.short_decription|default:"" }}" />
+<meta property="og:description" content="{{ seo.description|default:obj.short_decription|default:"" }}" />
+{% if seo.og_image_url %}<meta property="og:image" content="{{ seo.og_image_url }}" />{% endif %}
 <title>{{ seo.title|default:obj|default:"" }}</title>

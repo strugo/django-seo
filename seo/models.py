@@ -9,6 +9,7 @@ class SeoData(models.Model):
     title = models.CharField(max_length=255, verbose_name=_(u'Page title'), blank=True, null=True)
     keywords = models.TextField(verbose_name=_(u'Keywords'), blank=True, null=True)
     description = models.TextField(verbose_name=_(u'Description'), blank=True, null=True)
+    og_image_url = models.URLField(verbose_name=_(u'Open Graph URL'), blank=True, null=True)
 
     class Meta:
         abstract = True
