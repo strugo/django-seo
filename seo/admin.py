@@ -1,10 +1,10 @@
 from django.contrib import admin
-from django.contrib.contenttypes.generic import GenericTabularInline
+from django.contrib.contenttypes.generic import GenericStackedInline
 
 from seo.models import SeoObject, SeoURL
 from django.core.exceptions import ObjectDoesNotExist
 
-class SeoObjectInline(GenericTabularInline):
+class SeoObjectInline(GenericStackedInline):
     model = SeoObject
     extra = 1
     max_num = 1
