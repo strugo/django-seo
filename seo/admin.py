@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.contenttypes.generic import GenericStackedInline
 
-from seo.models import SeoObject, SeoURL
+from seo.models import SeoObject, SeoURL, SeoURLMeta
 from django.core.exceptions import ObjectDoesNotExist
 
 class SeoObjectInline(GenericStackedInline):
@@ -11,12 +11,20 @@ class SeoObjectInline(GenericStackedInline):
     ct_field = "content_type"
     ct_fk_field = "object_pk"
 
+
+class SeoMetaUrlInline(admin.TabularInline):
+    model = SeoURLMeta
+
+
 class SeoURLAdmin(admin.ModelAdmin):
     list_display = ('url', 'title')
     ordering = ['url', ]
     search_fields = ['url', 'title']
     fieldsets = (None, {
-        'fields': ('title', 'url', 'description', 'keywords', 'og_image_url', ),
+        'fields': ('title', 'url', 'description', 'keywords', ),
     }),
+    inlines = [
+        SeoMetaUrlInline,
+    ]
 
 admin.site.register(SeoURL, SeoURLAdmin)
