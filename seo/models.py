@@ -36,6 +36,10 @@ class SeoURL(SeoData):
     def have_og_description(self):
         return bool(self.metatags.filter(Q(name='og:description') | Q(http_equiv='og:description')).count())
 
+    @property
+    def have_og_title(self):
+        return bool(self.metatags.filter(Q(name='og:title') | Q(http_equiv='og:title')).count())
+
 
 class SeoMetaBase(models.Model):
     http_equiv = models.CharField(max_length=255, blank=True, null=True)
