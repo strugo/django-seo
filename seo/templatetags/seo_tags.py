@@ -3,6 +3,7 @@
 from django import template
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
+from django.db.models import Q
 from django.template.loader import render_to_string
 
 from seo.models import SeoObject, SeoURL
@@ -50,3 +51,8 @@ def seo_url(path, obj=None):
         else:
             return render_seo(seo, obj=obj)
     return render_seo(None, obj=obj)
+
+
+@register.filter
+def have_meta(seo_obj, tag):
+    return bool(seo_obj.metatags.filter(Q(name=tag) | Q(http_equiv=tag)).count())

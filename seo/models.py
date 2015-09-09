@@ -3,7 +3,6 @@
 from django.contrib.contenttypes import generic
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
-from django.db.models import Q
 from django.utils.translation import ugettext_lazy as _
 
 class SeoData(models.Model):
@@ -31,14 +30,6 @@ class SeoURL(SeoData):
     class Meta:
         verbose_name = _(u'SEO path')
         verbose_name_plural = _(u'SEO path')
-
-    @property
-    def have_og_description(self):
-        return bool(self.metatags.filter(Q(name='og:description') | Q(http_equiv='og:description')).count())
-
-    @property
-    def have_og_title(self):
-        return bool(self.metatags.filter(Q(name='og:title') | Q(http_equiv='og:title')).count())
 
 
 class SeoMetaBase(models.Model):
