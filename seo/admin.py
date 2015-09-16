@@ -21,7 +21,7 @@ class SeoURLAdmin(admin.ModelAdmin):
     ordering = ['url', ]
     search_fields = ['url', 'title']
     fieldsets = (None, {
-        'fields': ('title', 'url', 'description', 'keywords', ),
+        'fields': ('title', 'url', 'description', 'keywords', 'og_title', 'og_description', 'og_image_url',),
     }),
     inlines = [
         SeoMetaUrlInline,

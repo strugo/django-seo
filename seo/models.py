@@ -6,9 +6,11 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 class SeoData(models.Model):
-    title = models.CharField(max_length=255, verbose_name=_(u'Page title'), blank=True, null=True)
+    title = models.CharField(verbose_name=_(u'Page title'), max_length=255, blank=True, null=True)
     keywords = models.TextField(verbose_name=_(u'Keywords'), blank=True, null=True)
     description = models.TextField(verbose_name=_(u'Description'), blank=True, null=True)
+    og_title = models.CharField(verbose_name=_(u'Open Graph Title'), max_length=255, blank=True, null=True)
+    og_description = models.TextField(verbose_name=_(u'Open Graph Description'), blank=True, null=True)
     og_image_url = models.URLField(verbose_name=_(u'Open Graph URL'), blank=True, null=True)
 
     class Meta:
@@ -25,7 +27,6 @@ class SeoObject(SeoData):
 
 class SeoURL(SeoData):
     url = models.CharField(max_length=255, verbose_name=_(u'URL'), help_text=_(u'Or beginning URL part beginning and ending with "/"'))
-    og_image_url = None
 
     class Meta:
         verbose_name = _(u'SEO path')
