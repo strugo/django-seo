@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from django.contrib.contenttypes import generic
+from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
@@ -19,7 +19,7 @@ class SeoData(models.Model):
 class SeoObject(SeoData):
     content_type = models.ForeignKey(ContentType, editable=False)
     object_pk = models.PositiveIntegerField(editable=False)
-    content_object = generic.GenericForeignKey(ct_field="content_type", fk_field="object_pk")
+    content_object = GenericForeignKey(ct_field="content_type", fk_field="object_pk")
 
     class Meta:
         verbose_name = _(u'SEO object')
