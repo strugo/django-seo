@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.contrib.contenttypes.generic import GenericStackedInline
+from django.contrib.contenttypes.admin import GenericStackedInline
 
 from seo.models import SeoObject, SeoURL, SeoURLMeta
 from django.core.exceptions import ObjectDoesNotExist
