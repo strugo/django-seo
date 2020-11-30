@@ -26,7 +26,7 @@ class SeoObject(SeoData):
         verbose_name_plural = _(u'SEO objects')
 
 class SeoURL(SeoData):
-    url = models.CharField(max_length=255, verbose_name=_(u'URL'), help_text=_(u'Or beginning URL part beginning and ending with "/"'))
+    url = models.CharField(max_length=255, verbose_name=_(u'URL'), help_text=_(u'Or beginning URL part beginning and ending with "/"'), unique=True)
 
     class Meta:
         verbose_name = _(u'SEO path')
