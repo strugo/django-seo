@@ -20,7 +20,7 @@ class SeoData(models.Model):
 class SeoObject(SeoData):
     content_type = models.ForeignKey(ContentType, editable=False)
     object_pk = models.PositiveIntegerField(editable=False)
-    content_object = GenericForeignKey(ct_field="content_type", fk_field="object_pk")
+    content_object = GenericForeignKey(ct_field="content_type", fk_field="object_pk", unique=True)
 
     class Meta:
         verbose_name = _(u'SEO object')
